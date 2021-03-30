@@ -27,7 +27,11 @@
                     <option v-for='genre in albumsGender' :value="genre">{{genre}}</option>
                 </select>
             </div>
-            <ul id="disc_list">
+            <div class="sort_by_year">
+                <label for="sort by year">Sort by Year</label>
+                <input type="checkbox" name="sort by year" id="sort" @change="toggleSort()">
+            </div>
+            <ul class="disc_list" v-if='!showSorted'>
                 <li v-for='album in albums' v-if="album.genre.includes(genreChoosen)">
                     <div class="album_container">
                         <img :src="album.poster" alt="">
@@ -37,7 +41,18 @@
                             <p>{{album.year}}</p>
                         </div>
                     </div>
-
+                </li>
+            </ul>
+            <ul class="disc_list" id="2" v-if='showSorted'>
+                <li v-for='album in albumsSortedByYear' v-if="album.genre.includes(genreChoosen)">
+                    <div class="album_container">
+                        <img :src="album.poster" alt="">
+                        <h4>{{album.title}}</h4>
+                        <div class="author_year_container">
+                            <p>{{album.author}}</p>
+                            <p>{{album.year}}</p>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>

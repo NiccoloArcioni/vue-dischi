@@ -2,8 +2,10 @@ var app = new Vue ({
     el: '#root',
     data: {
         albums: [],
+        albumsSortedByYear:[],
         albumsGender: [],
-        genreChoosen: ''
+        genreChoosen: '',
+        showSorted: false
     },
     created() {
         axios 
@@ -15,6 +17,10 @@ var app = new Vue ({
                     if (!app.albumsGender.includes(app.albums[i].genre)) {
                         app.albumsGender.push(app.albums[i].genre);
                     }
+                    app.albumsSortedByYear.push(app.albums[i]);
+                    app.albumsSortedByYear = app.albumsSortedByYear.sort(function (a, b) {
+                        return a.year - b.year;
+                    });
                     i++;
                 }
             })
@@ -24,6 +30,13 @@ var app = new Vue ({
             let value = document.getElementById('picker').value;
             console.log(value);
             this.genreChoosen = value;
+        },
+        toggleSort: function() {
+            if (this.showSorted == false) {
+                this.showSorted = true;
+            } else {
+                this.showSorted = false;
+            }
         }
     }
 }) 
