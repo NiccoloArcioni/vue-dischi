@@ -21,8 +21,14 @@
 
     <main>
         <div id="root" class="disc_container">
+            <div id="albums_genre">
+                <select id='picker' @change='setGenreChoosen()'>
+                    <option value="">All</option>
+                    <option v-for='genre in albumsGender' :value="genre">{{genre}}</option>
+                </select>
+            </div>
             <ul id="disc_list">
-                <li v-for='album in albums'>
+                <li v-for='album in albums' v-if="album.genre.includes(genreChoosen)">
                     <div class="album_container">
                         <img :src="album.poster" alt="">
                         <h4>{{album.title}}</h4>

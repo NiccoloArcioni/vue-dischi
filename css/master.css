@@ -25,10 +25,12 @@ main {
 main .disc_container {
     width: 80%;
     margin: 0 auto;
-    padding: 60px 0;
+    padding: 30px 0;
+    text-align: center;
 }
 
 #disc_list {
+    margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
     list-style: none;
